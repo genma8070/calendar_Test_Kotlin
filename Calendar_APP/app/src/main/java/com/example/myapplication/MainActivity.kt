@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, BlankFragment())
+                .replace(R.id.fragmentContainer, CalendarFragment())
                 .commit()
         }
     }

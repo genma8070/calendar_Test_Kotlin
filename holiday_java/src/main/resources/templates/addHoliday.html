@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="common/header :: header_fragment(title = '祝日追加', scripts = ~{::script}, links = ~{::link})"></head>
+<meta charset="UTF-8" />
+<body>
+	<div class="container">
+		<h1>祝日追加</h1>
+		<form th:action="@{/add}" method="post" th:object="${holidayRequest}"
+			class="d-flex mt-1 mx-5 border border-dark border-2 justify-content-center">
+
+			<div class="row d-flex flex-column mx-3 my-2">
+				<div class="form-group my-2">
+					<label for="datepicker">Select a date:</label> <input type="text"
+						id="datepicker" name="selectedDate" class="form-control"
+						th:value="${holidayRequest.selectedDate}">
+				</div>
+						<div class="col d-flex my-2">
+					<label for="holidays">祝日:</label> <select
+						th:field="${holidayRequest.holidayName}" id="holidays"
+						name="holidays">
+						<option th:each="holiday : ${holidays}" th:value="${holiday}"
+							th:text="${holiday}"></option>
+					</select>
+				</div>
+			</div>
+			<div class="mt-5">
+				<input type="submit" value="　追加　"
+					class="btn btn-outline-primary ms-3">
+			</div>
+		</form>
+		<div th:if="${holidayResponse}" th:object="${holidayResponse}">
+			<label class="text-danger" th:text="*{message}"></label>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#datepicker')
+									.datepicker(
+											{
+												format : 'yyyy-mm-dd',
+												autoclose : true,
+												container : '.container',				
+											});
+							$('#datepicker')
+									.on(
+											'show',
+											function() {
+												$('.datepicker-days table')
+														.addClass(
+																'table table-bordered table-condensed');
+											});
+						});
+	</script>
+</body>
+</html>

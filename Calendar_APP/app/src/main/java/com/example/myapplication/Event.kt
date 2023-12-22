@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import java.time.LocalDate
-
+//  イベント（休暇種、日付、休暇内容）
 data class Event(val type: String, val date: LocalDate, val content: String)
 
 class EventAdapter : ListAdapter<Event, EventAdapter.EventViewHolder>(EventDiffCallback()) {
